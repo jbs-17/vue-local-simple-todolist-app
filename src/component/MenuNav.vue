@@ -10,9 +10,9 @@ const {selectTab, resetAll} = defineProps({
 </script>
 
 <template>
-       <div class="d-flex m-5 justify-content-center gap-2">
-              <button class="btn btn-sm btn-dark btn-outline-light" @click="selectTab('TabCreateOne')">Add New
+       <div class="d-flex justify-content-center gap-2 w-100 border-bottom border-top border-1 p-2 mb-3">
+              <button class="btn btn-sm btn-outline-dark" @click="selectTab('TabCreateOne')">Add New
                      Todo</button>
-              <button class="btn btn-sm btn-dark btn-outline-light" @click="resetAll">Reset All</button>
+              <button class="btn btn-sm btn-outline-dark" @click="resetAll">Reset All</button>
        </div>
 </template>

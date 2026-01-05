@@ -108,6 +108,7 @@ function onCreate() {
        z-index: 999;
        width: 90%;
        max-width: 600px;
+       filter: brightness(2.5);
 }
 
 input,
