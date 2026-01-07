@@ -39,7 +39,7 @@ const { name, description, startedAt, endedAt, createdAt, updatedAt, uid, doneAt
 <template>
 
 
-       <article class="text-light border-dark border border-1 m-1 mx-2 p-3 rounded rounded-4 d-inline-flex flex-column" :uid>
+       <article class="text-light border-dark border border-1 rounded rounded-4 d-inline-flex flex-column w-100 p-3" :uid>
               <h2 class="text-dark text-wrap text-break">{{ name }}</h2>
               <div>
                      <p class="text-dark m-0 p-0 d-block text-wrap text-break">{{ description || '-' }}</p>
@@ -51,9 +51,15 @@ const { name, description, startedAt, endedAt, createdAt, updatedAt, uid, doneAt
                      <time class="text-dark" :datetime="endedAt">Deadline : {{ endedAt?.toLocaleString?.() ?? '-' }}</time>
               </div>
               <div class="d-flex gap-1 m-1 mt-3">
-                     <button class="btn btn-sm btn-outline-success">Done</button>
-                     <button class="btn btn-sm btn-outline-danger">Delete</button>
+                     <button class="btn btn-sm btn-outline-success">Mark Done</button>
+                     <button class="btn btn-sm btn-outline-dark">Detail</button>
               </div>
+              
+              <button class="btn btn-sm position-absolute mx-2 mt-2">
+                      <spann v-for="i in 3" class="bg-black">
+                      </spann>
+                      
+              </button>
        </article>
 
 </template>
@@ -61,12 +67,17 @@ const { name, description, startedAt, endedAt, createdAt, updatedAt, uid, doneAt
 
 <style scoped>
        article {
-              max-width: 400px;
+              
               background: transparent;
               background-color: rgba(240,250,255, .5);
        }
        
        h1 {
-       max-width: 350px;
+       
+       }
+       
+       
+       span {
+         padding: 2px;
        }
 </style>

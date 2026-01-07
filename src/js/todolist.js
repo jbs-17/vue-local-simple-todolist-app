@@ -97,7 +97,7 @@ class TodoStorage {
               this.save();
        }
 
-       updatedAt(todoItem) {
+       updatedOne(todoItem) {
               this.theStorage.items = this.theStorage.items.map(todo => {
                      if (todo.uid !== todoItem.uid) return todo;
                      return todoItem;
@@ -111,8 +111,16 @@ class TodoStorage {
                      return true;
               })
        }
-
-
+       
+       
+       toggleDone(uid){
+               this.theStorage.items = this.theStorage.items.map(todo => {
+                       if(todo.uid === uid) return todo;
+                       todo.updatedAt = new Date();
+                       todo.isDone = !todo.isDone;
+                       return todo;
+               })
+       }
 
 
 }
