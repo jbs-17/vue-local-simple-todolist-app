@@ -1,5 +1,6 @@
 <template>
-       <h1 class="h1 h-100 text-dark fw-bolder text-center p-2 m-0">Snoopy Scribbles</h1>
+       <h1 class="h1 h-100 text-dark fw-bolder text-center p-2 m-0 mt-3">Snoopy's Scribbles</h1>
+       <hr>
 </template>
 
 <style scoped>

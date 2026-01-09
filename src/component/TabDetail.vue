@@ -4,6 +4,57 @@ import { reactive, useTemplateRef, ref } from "vue";
 
 const emits = defineEmits(["cancel", "create"]);
 
+
+
+
+const {
+       todoItem
+} = defineProps({
+       todoItem : {
+              type : ()=> {
+                     return {
+                            uid : String
+                     }
+              },
+              default : () => ({
+                     uid: {
+              required: true,
+              type: String
+       },
+       name: {
+              required: true,
+              type: String
+       },
+       description: {
+              required: true,
+              type: String
+       }, startedAt: {
+              required: false,
+              type: Date
+       }, endedAt: {
+              required: false,
+              type: [Date]
+       }, createdAt: {
+              required: true,
+              type: Date
+       }, updatedAt: {
+              required: true,
+              type: Date
+       },
+       doneAt: {
+              required: true,
+              type: Date
+       },
+       isDone: {
+              required: true,
+              type: Boolean
+       }
+              })
+       }
+})
+
+
+
 // const errorP = useTemplateRef("name-input");
 const errorMsg = ref('');
 
@@ -53,7 +104,7 @@ function onCreate() {
     >
         <div>
             <h3 class="h3 mt-3 mb-1 text-black-50 text-center fw-normal">
-                Create New To-Do
+                Todo Detail's
             </h3>
         </div>
 

@@ -11,13 +11,16 @@
 </script>
 
 <template>
-        <h1 class="h3 w-100 h-100 text-black text-center d-flex flex-column align-self-center">
-                Nothing to do!
-                <br/>
-                <span class="h5">
+        <div class="d-flex flex-column align-self-center">
+
+                <h1 class="h3 w-100 h-100 text-black text-center fw-bold">
+                        Nothing to do!
+                </h1>
+                <span class="fs-3">
                         {{ message }}
                 </span>
-        </h1>
+              
+        </div>
 </template>
 
 <style scoped>

@@ -1,53 +1,72 @@
 <script setup>
-        import TodoListApp from './component/TodoListApp.vue';
+import { ref } from "vue";
+import TabCreateOne from "./component/TabCreateOne.vue";
+import { todoApp } from "@/js/todolist";
+import TodoItem from "./component/TodoItem.vue";
+import AppTitle from "./component/AppTitle.vue";
+import NothingToDo from "./component/NothingToDo.vue";
+import CreateOneBtn from "./component/CreateOneBtn.vue";
 
-import { ref } from 'vue';
-const disabled = ref(false);
+const selectedTab = ref("");
 
-function warnDisabled() {
-  disabled.value = true;
-  setTimeout(() => {
-    disabled.value = false;
-  }, 1500);
+function selectTab(tab = "") {
+        if (selectedTab.value === tab) return (selectedTab.value = "");
+        selectedTab.value = tab;
+}
+
+function createOne(todoItem) {
+        todoApp.createOne(todoItem);
+        selectTab("");
+}
+
+function resetAll() {
+        selectTab();
+        const ok = confirm("All todolist will be deleted. Are you sure?");
+        if (!ok) return;
+        todoApp.resetTheLocalStorage();
 }
 </script>
 
 <template>
-        <TodoListApp v-if="false" />
+        <div class="container p-0 position-relative">
+        <CreateOneBtn @click="selectTab('TabCreateOne')" />
 
-<button @click="warnDisabled">Click me</button>
-  <div :class="{ shake: disabled }">Warning message</div>
-  
+        <TabCreateOne v-if="selectedTab === 'TabCreateOne'" @cancel="selectTab()" @create="createOne" />
+
+        <AppTitle />
+
+
+        <div class="w-100 d-flex p-3 flex-sm-column flex-md-column flex-column gap-2">
+                <template v-if="!todoApp.theStorage.items.length">
+                        <NothingToDo />
+                </template>
+
+                <template v-else v-for="{
+                        name,
+                        description,
+                        createdAt,
+                        updatedAt,
+                        startedAt,
+                        endedAt,
+                        uid,
+                        isDone,
+                        doneAt
+                } in todoApp.theStorage.items" :key="uid">
+                        <TodoItem :name :description :createdAt :updatedAt :startedAt :endedAt :uid :isDone :doneAt />
+                </template>
+        </div>
+
+
+
+                
+</div>
 
 </template>
 
-
-
 <style scoped>
-        
-.shake {
-  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-}
-@keyframes shake {
-  /* Define keyframes for the animation */
-  10%, 90% { transform: translate3d(-10px, 0, 0); color: red; }
-  /* ... more keyframes ... */
-}
+        div.container {
+                /* background-color: red; */
+       max-width: 600px;
 
-</style>
-<style>
-:root {
-        --bg-color-1: rgb(10, 10, 10, .9);
-        }
-        body {
-        font-size: 12.7px;
-        /*background-color:var(--bg-color-1);*/
-        background-image: url("/9fc6e16393705b225aba21fdc447de4d.webp");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-attachment: fixed;
-        width: 100%;
-        height: 100%;
         }
 </style>
